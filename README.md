@@ -3,7 +3,7 @@ services: app-service\web, app-service
 platforms: python
 author: cephalin
 ---
-# Building Extraction Evaluation [Bee] Service
+# Building Extraction Evaluation (Bee) Service
 
 A RESTful web service to perform polygon comparison for building extraction evaluation. The service is implemented in Python using an Azure App Service Web App. This repository has been tested to continuously deploy to Azure via GIT.
 
@@ -20,7 +20,11 @@ To learn how to deploy this starter web app to App Service in a few minutes, go 
 
 ## Local development steps
 1. Create virual envornment: python -m virtualenv env
-2.
+2. Install external packages: ./env/bin/pip install -r requirements.txt
+3. Create a superuser: ./env/bin/python manage.py createsuperuser
+4. Run server: ./env/bin/python manage.py runserver
+5. Install Azure SDK for Python: ./env/bin/pip install azure
+6. Update dependencies: ./env/bin/pip freeze > requirements.txt
 
 ## License
 
