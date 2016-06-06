@@ -11,9 +11,16 @@ azure-nspkg==1.0.0
 azure-servicebus==0.20.1
 azure-servicemanagement-legacy==0.20.2
 azure-storage==0.20.3
+click==6.6
+click-plugins==1.0.3
+cligj==0.4.0
 Django==1.9.6
+djangorestframework==3.3.3
+Fiona==1.6.4
 futures==3.0.5
 python-dateutil==2.5.3
 requests==2.10.0
+Rtree==0.8.0
+Shapely==1.5.16
 six==1.10.0
 wheel==0.24.0
