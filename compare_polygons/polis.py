@@ -54,10 +54,7 @@ def shp_to_list(shpfile):
     with fiona.open(shpfile) as src:
         return [geometry.shape(rec['geometry']) for rec in src]
 
-@click.command()
-@click.argument('in_ref', type=click.Path(exists=True, dir_okay=False, resolve_path=True))
-@click.argument('in_cmp', type=click.Path(exists=True, dir_okay=False, resolve_path=True))
-@click.argument('out', type=click.Path(dir_okay=False, writable=True, resolve_path=True))
+
 def score(in_ref, in_cmp, out):
     """Given two polygon vector files, calculate the polis score
     between them. The third argument specifies the output file, which
