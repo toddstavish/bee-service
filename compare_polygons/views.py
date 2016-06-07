@@ -27,6 +27,7 @@ class JSONResponse(HttpResponse):
 @renderer_classes((JSONRenderer,))
 def compare_polys_polis(request, format=None):
     print('am i here')
+    import os
     print(os.getcwd())
     content = {'user_count': 1}
     score('data/FullSubset.shp', 'data/user_data.shp', 'data/out.shp')
