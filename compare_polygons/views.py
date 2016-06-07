@@ -30,7 +30,9 @@ def compare_polys_polis(request, format=None):
     import os
     print(os.getcwd())
     content = {'user_count': 1}
-    score('./data/FullSubset.shp', './data/user_data.shp', './data/out.shp')
+    score(os.getcwd() + '/data/FullSubset.shp',
+            os.getcwd() + '/data/user_data.shp',
+            os.getcwd() + '/data/out.shp')
     return Response(content)
 
     #data = JSONParser().parse(request)
