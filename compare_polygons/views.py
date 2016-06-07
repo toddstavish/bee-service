@@ -28,7 +28,7 @@ class JSONResponse(HttpResponse):
 def compare_polys_polis(request, format=None):
     print('am i here')
     content = {'user_count': 1}
-    compare('data/FullSubset.shp', 'data/user_data.shp', 'data/out.shp')
+    score('data/FullSubset.shp', 'data/user_data.shp', 'data/out.shp')
     return Response(content)
 
     #data = JSONParser().parse(request)
