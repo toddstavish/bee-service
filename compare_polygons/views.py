@@ -9,6 +9,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from compare_polygons.models import Footprint
 from compare_polygons.serializers import FootprintSerializer
+from compare_polygons.polis import score
 
 # Create your views here.
 
@@ -27,6 +28,7 @@ class JSONResponse(HttpResponse):
 def compare_polys_polis(request, format=None):
     print('am i here')
     content = {'user_count': 1}
+    compare(data/FullSubset.shp, data/user_data.shp data/out.shp)
     return Response(content)
 
     #data = JSONParser().parse(request)
