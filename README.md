@@ -11,10 +11,10 @@ A RESTful web service to perform polygon comparison for building extraction eval
 6. Update dependencies: ./env/bin/pip freeze > requirements.txt
 7. Git push to GitHub deploys code to Azure
 
-git clone https://github.com/toddstavish/bee-service.git
-cd bee-service
-Allow external network access to your VM
-gunicorn -b 0.0.0.0:8000 django_rest.wsgi
+1. git clone https://github.com/toddstavish/bee-service.git
+2. cd bee-service
+3. Allow external network access to your VM
+4. gunicorn -b 0.0.0.0:8000 [--workers=5] django_rest.wsgi
 
 ## To Do
 1. Create JSON on request
