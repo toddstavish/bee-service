@@ -1,7 +1,6 @@
 # Building Extraction Evaluation (BEE) Service
 
-A RESTful web service to perform polygon comparison for building extraction evaluation (Polis). The service is implemented with the [Django](https://www.djangoproject.com/) framework and deployed in an [Azure App Service Web App](http://azure.microsoft.com/en/marketplace/partners/PTVS/Django). This repository has been tested to continuously deploy to Azure from GitHub. - generalized VM - no state. Continuosly deployed.
-
+A RESTful web service to perform polygon comparison for building extraction evaluation (Polis). The service is implemented with the [Django](https://www.djangoproject.com/) framework and deployed in the [Azure Container Service ](https://azure.microsoft.com/en-us/services/container-service/). This repository has been tested to continuously deploy to Azure from GitHub. The container is stateless and lightweight.
 
 ## Development steps
 1. git clone https://github.com/toddstavish/bee-service.git
@@ -17,19 +16,17 @@ A RESTful web service to perform polygon comparison for building extraction eval
 * [Deploy an Azure Container Service cluster](https://azure.microsoft.com/en-us/documentation/articles/container-service-deployment/)
 2. eval $(docker-machine env <machine name>) <-machine name is from first step
 3. Allow external network access to your VM (firewall in your resource group)
-4.
 
 ## To Do
 1. Create JSON on request
 2. Add IoU evaluation
 
-## Django Security concerns pre-deployment
+## Security\Performance concerns pre-deployment
 1. Turn off debug
 2. Define allowable hosts
 3. Remove csrf_exempt
 4. Define DEFAULT_PERMISSION_CLASSES
+5. Remove prints from python code base
 
-## Helpful hints
-1. Run gunicorn locally
 ## License
 See [LICENSE](./LICENSE).
