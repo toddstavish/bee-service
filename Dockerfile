@@ -38,5 +38,4 @@ EXPOSE 8000
 
 # Run gunicorn
 ENTRYPOINT ["/usr/local/bin/gunicorn"]
-CMD ["-b", ":8000", "django_rest.wsgi"]
-#CMD ["/bin/bash"]
+CMD ["-b", ":8000", "--timeout", "120", "django_rest.wsgi"]

@@ -69,6 +69,7 @@ def score(in_ref, in_cmp, out):
     """
     # Read in all the geometries in the reference shapefile.
     ref_polys = shp_to_list(in_ref)
+    print(ref_polys)
 
     # Build a spatial index of the reference shapes.
     idx = index.Index((i, geom.bounds, None) for i, geom in enumerate(ref_polys))
@@ -100,6 +101,7 @@ def score(in_ref, in_cmp, out):
     print("Number of matches: {}".format(len(hits)))
     print("Number of misses: {}".format(len(ref_polys) - len(hits)))
     print("Duplicate matches: {}".format(sum([1 for i in Counter(hits).values() if i > 1])))
+
 
 if __name__ == "__main__":
     score()
