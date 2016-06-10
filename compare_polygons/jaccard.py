@@ -1,22 +1,20 @@
 from shapely.geometry import box, Polygon
 import numpy as np
+import polis
 
 def compare_polys(poly_a, poly_b):
-    """Compares two polygons via the Jaccard index.
+    """Compares two polygons via the Jaccard distance metric.
 
     Input:
         poly_a: A Shapely polygon.
         poly_b: Another Shapely polygon.
 
     Returns:
-        The Jaccard index between these two polygons.
+        The Jaccard distance between these two polygons.
     """
     intersection = poly_a.intersection(poly_b).area
     union = poly_a.union(poly_b).area
-    jaccard = intersection/union
-    print "\npoly0:", poly_a
-    print "poly1:", poly_b
-    print "Jaccard:", jaccard
+    jaccard = 1 - intersection/union
     return jaccard
 
 if __name__ == "__main__":
@@ -50,3 +48,4 @@ if __name__ == "__main__":
     for itmp in range(len(polys_gt)):
         poly_tmp = polys_gt[itmp]
         compare_polys(poly, poly_tmp)
+        print 'Polis: ', polis.compare_polys(poly, poly_tmp)

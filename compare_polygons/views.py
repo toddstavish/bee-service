@@ -1,42 +1,39 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+import numpy as np
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
-from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from compare_polygons.models import Footprint
-from compare_polygons.serializers import FootprintSerializer
-from compare_polygons.polis import score
+from shapely.geometry import Polygon
+from compare_polygons import polis as pls
+from compare_polygons import jaccard as jcd
 
 # Create your views here.
-
-class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders its content into JSON.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
 
 @csrf_exempt
 @api_view(('GET',))
 @renderer_classes((JSONRenderer,))
 def compare_polys_polis(request, format=None):
-    print('am i here')
-    import os
-    print(os.getcwd())
-    content = {'user_count': 1}
-    score(os.getcwd() + '/data/FullSubset.shp',
-            os.getcwd() + '/data/user_data.shp',
-            os.getcwd() + '/data/out.shp')
+    poly_1, poly_2 = create_polys(request)
+    polis = pls.compare_polys(poly_1, poly_2)
+    content = {'polis': polis}
     return Response(content)
 
-    #data = JSONParser().parse(request)
-    #serializer = FootprintSerializer(data=data)
-    #if serializer.is_valid():
-        #return JSONResponse(serializer.data, status=201)
-    #return JSONResponse(serializer.errors, status=400)
+
+@csrf_exempt
+@api_view(('GET',))
+@renderer_classes((JSONRenderer,))
+def compare_polys_jaccard(request, format=None):
+    poly_1, poly_2 = create_polys(request)
+    jaccard = jcd.compare_polys(poly_1, poly_2)
+    content = {'jaccard': jaccard}
+    return Response(content)
+
+
+def create_polys(request):
+    params = request.query_params.iteritems()
+    polys={}
+    for k,v in params:
+        coords = np.array([float(f) for f in v.split(',')])
+        polys[k] = np.reshape(coords, (-1, 2))
+    return (Polygon(polys.values()[0]), Polygon(polys.values()[1]))
