@@ -6,6 +6,7 @@ djangorestframework==3.3.3
 Fiona==1.6.4
 futures==3.0.5
 gunicorn==19.6.0
+numpy==1.11.0
 python-dateutil==2.5.3
 requests==2.10.0
 Rtree==0.8.0
